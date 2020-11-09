@@ -56,8 +56,8 @@ export class BarComponent implements OnChanges {
 
   element: any;
   path: any;
-  gradientId: any;
-  gradientFill: any;
+  gradientId = '';
+  gradientFill = '';
   startOpacity: any;
   initialized: boolean = false;
   gradientStops: any[];
@@ -77,16 +77,16 @@ export class BarComponent implements OnChanges {
   }
 
   update(): void {
-    this.gradientId = 'grad' + id().toString();
-    this.gradientFill = `url(#${this.gradientId})`;
 
     if (this.gradient || this.stops) {
+      this.gradientId = 'grad' + id().toString();
+      this.gradientFill = `url(#${this.gradientId})`;
       this.gradientStops = this.getGradient();
       this.hasGradient = true;
     } else {
       this.hasGradient = false;
     }
-    
+
     this.updatePathEl();
   }
 
@@ -103,7 +103,7 @@ export class BarComponent implements OnChanges {
          .attr('d', path);
     } else {
       node.attr('d', path);
-    }    
+    }
   }
 
   getGradient() {
